@@ -1,3 +1,9 @@
+/*
+ * Author: [Alvaro Pulido]
+ * Course: COMP-003B
+ * Faculty Name: Jonathan Cruz
+ * Purpose: Demonstrate CRUD operations via ASP.NET Core Web Api
+ */
 
 namespace COMP003B.Assigment5
 {
