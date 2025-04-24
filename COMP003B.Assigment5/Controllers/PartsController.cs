@@ -26,8 +26,34 @@ namespace COMP003B.Assigment5.Controllers
 
             return Ok(parts);
         }
+        [HttpPost]
+
+        public ActionResult<Parts> CreateParts(Parts parts)
+        {
+            parts.Id = PartsStore.Parts.Max(p => p.Id) + 1;
+
+            PartsStore.Parts.Add(parts);
+
+            return CreatedAtAction(nameof(GetParts), new { id = parts.Id } );
+        }
 
         [HttpPut("{id}")]
+
+        public IActionResult UpdateParts(int id, Parts updatedPart)
+        {
+            var existingParts = PartsStore.Parts.FirstOrDefault(p =>p.Id == id);
+
+            if (existingParts is null)
+                return NotFound();
+
+            existingParts.Name = updatedPart.Name;
+            existingParts.Price = updatedPart.Price;
+
+            return NoContent();
+        }
+
+
+        [HttpDelete("{id}")]
 
         public IActionResult DeleteParts(int id)
         {
